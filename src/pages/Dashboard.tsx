@@ -47,8 +47,8 @@ export default function Dashboard() {
 
         {/* المخططات */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <UserDistributionChart data={userDistribution} />
           <ProjectStatusChart data={projectStatus} />
+          <UserDistributionChart data={userDistribution} />
         </div>
 
         {/* الأنشطة الأخيرة */}

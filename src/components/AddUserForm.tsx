@@ -143,7 +143,7 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
           )}
         />
 
-        <DialogFooter className="gap-2 sm:gap-0">
+        <DialogFooter className="gap-3">
           <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
             إلغاء
           </Button>

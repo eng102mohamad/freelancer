@@ -3,7 +3,7 @@ import { useAppSelector, useAppDispatch } from '@/hooks/redux';
 import { deleteUser } from '@/store/userSlice';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Plus, Edit, Trash2, CheckCircle, XCircle } from 'lucide-react';
+import { Search, Plus, Trash2, CheckCircle, XCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import {
@@ -30,10 +30,6 @@ export default function UserManagement() {
         if (window.confirm('هل أنت متأكد من أنك تريد حذف هذا المستخدم؟')) {
             dispatch(deleteUser(id));
         }
-    };
-
-    const handleAddUserSuccess = () => {
-        setIsDialogOpen(false);
     };
 
     if (loading) {
@@ -94,8 +90,8 @@ export default function UserManagement() {
                             {filteredUsers.map((user) => (
                                 <TableRow key={user.id}>
                                     <TableCell>
-                                        <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                                            <span className="text-blue-600 font-semibold">
+                                        <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center">
+                                            <span className="text-red-600 font-semibold">
                                                 {user.name.charAt(0)}
                                             </span>
                                         </div>
@@ -121,9 +117,6 @@ export default function UserManagement() {
                                     </TableCell>
                                     <TableCell className="text-right">
                                         <div className="flex justify-end gap-2">
-                                            <Button variant="ghost" size="icon">
-                                                <Edit className="h-4 w-4" />
-                                            </Button>
                                             <Button 
                                                 variant="ghost" 
                                                 size="icon"

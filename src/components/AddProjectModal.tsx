@@ -17,7 +17,6 @@ const AddProjectModal = ({ isOpen, onClose, onSave, project }: AddProjectModalPr
   const [client, setClient] = useState('');
   const [startDate, setStartDate] = useState('');
   const [status, setStatus] = useState<'مكتمل' | 'نشط' | 'متوقف'>('نشط');
-  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     if (project) {
@@ -41,7 +40,6 @@ const AddProjectModal = ({ isOpen, onClose, onSave, project }: AddProjectModalPr
     setClient('');
     setStartDate('');
     setStatus('نشط');
-    setProgress(0);
   };
 
   return (

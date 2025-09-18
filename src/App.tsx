@@ -7,7 +7,10 @@ import Dashboard from "@/pages/Dashboard"
 import ProjectManagement from "./pages/ProjecManagement"
 import UserManagement from "./pages/UserManagement"
 import FinanceManagement from "./pages/FinanceManagement"
+import ReviewsManagement from "./pages/ReviewsManagement"
 import './App.css'
+import SupportTickets from "./pages/SupportTickets"
+import GeneralSettings from "./pages/GeneralSettings"
 
 function App() {
   return (
@@ -34,6 +37,9 @@ function DashboardLayout() {
             <Route path="projects" element={<ProjectManagement />} />
             <Route path="users" element={<UserManagement />} />
             <Route path="finance" element={<FinanceManagement />} />
+            <Route path="reviews" element={<ReviewsManagement />} />
+            <Route path="support-tickets" element={<SupportTickets />} />
+            <Route path="settings" element={<GeneralSettings />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
         </SidebarInset>

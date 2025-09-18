@@ -1,12 +1,10 @@
-// src/components/DashboardSidebar.tsx
 import { NavLink } from "react-router-dom";
 import { 
   Home, 
   Users, 
   FolderOpen, 
   DollarSign, 
-  Star, 
-  BarChart3, 
+  Star,  
   Settings,
   HelpCircle,
   LogOut
@@ -27,7 +25,7 @@ const menuItems = [
   { title: "إدارة المشاريع", icon: FolderOpen, path: "/dashboard/projects" },
   { title: "الخدمات المالية", icon: DollarSign, path: "/dashboard/finance" },
   { title: "إدارة المراجعات", icon: Star, path: "/dashboard/reviews" },
-  { title: "تقارير الأداء", icon: BarChart3, path: "/dashboard/reports" },
+  { title: "تذاكر الدعم", icon: HelpCircle, path: "/dashboard/support-tickets" },
   { title: "الإعدادات العامة", icon: Settings, path: "/dashboard/settings" },
 ]
 
@@ -52,14 +50,14 @@ export function DashboardSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
                     asChild 
-                    className="justify-end px-6 py-3 my-1 transition-all duration-200 hover:bg-blue-50 rounded-lg"
+                    className="justify-end px-6 py-3 my-1 transition-all duration-200 hover:bg-red-50 rounded-lg"
                   >
                     <NavLink 
                       to={item.path}
                       className={({ isActive }) => 
                         `flex items-center gap-3 w-full ${
                           isActive 
-                            ? "text-blue-700 bg-blue-100" 
+                            ? "text-white bg-red-600" 
                             : "text-gray-700 hover:text-gray-900"
                         }`
                       }
@@ -82,7 +80,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton 
                   asChild 
-                  className="justify-end px-6 py-3 text-sm text-gray-500 hover:text-gray-700"
+                  className="justify-end px-6 py-3 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <a href="#" className="flex items-center gap-2">
                     <HelpCircle className="h-4 w-4" />
@@ -93,7 +91,7 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton 
                   asChild 
-                  className="justify-end px-6 py-3 text-sm text-gray-500 hover:text-gray-700"
+                  className="justify-end px-6 py-3 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <a href="#" className="flex items-center gap-2">
                     <LogOut className="h-4 w-4" />

@@ -33,7 +33,6 @@ export default function FinanceManagement() {
     }
   };
 
-  // بيانات المخطط - يمكن جلبها من الـ state أيضًا إذا كانت متوفرة
   const monthlyRevenueData = [
     { month: 'يناير', revenue: 14000 },
     { month: 'فبراير', revenue: 16000 },

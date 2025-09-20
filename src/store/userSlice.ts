@@ -5,8 +5,8 @@ export interface User {
     id: number;
     name: string;
     email: string;
-    role: 'عميل' | 'مطور' | 'مدير';
-    status: 'نشط' | 'غير نشط';
+    role: 'Customer' | 'Developer' | 'Manager';
+    status: 'Active' | 'Inactive';
     avatar: string;
 }
 
@@ -20,42 +20,42 @@ const initialState: UsersState = {
     users: [
         {
             id: 1,
-            name: 'علي أحمد',
+            name: 'Ali Ahmed',
             email: 'ali.ahmad@example.com',
-            role: 'عميل',
-            status: 'نشط',
+            role: 'Customer',
+            status: 'Active',
             avatar: '/avatars/avatar1.png'
         },  
         {   
             id: 2,
-            name: 'فادي محمود',
+            name: 'Fadi Mahmoud',
             email: 'fadi.mahmoud@example.com',
-            role: 'مطور',
-            status: 'نشط',
+            role: 'Developer',
+            status: 'Active',
             avatar: '/avatars/avatar2.png'
         },  
         {   
             id: 3,
-            name: 'ليلى خالد',
+            name: 'Layla Khalid',
             email: 'layla.khalid@example.com',
-            role: 'عميل',
-            status: 'غير نشط',
+            role: 'Customer',
+            status: 'Inactive',
             avatar: '/avatars/avatar3.png'
         },  
         {   
             id: 4,
-            name: 'سامي ناصر',
+            name: 'Sami Nasser',
             email: 'sami.nasser@example.com',
-            role: 'مطور',
-            status: 'نشط',
+            role: 'Developer',
+            status: 'Active',
             avatar: '/avatars/avatar4.png'
         },  
         {   
             id: 5,
-            name: 'نورا سعيد',
+            name: 'Nora Saeed',
             email: 'nora.saeed@example.com',
-            role: 'عميل',
-            status: 'نشط',
+            role: 'Customer',
+            status: 'Active',
             avatar: '/avatars/avatar5.png'
         }
     ],

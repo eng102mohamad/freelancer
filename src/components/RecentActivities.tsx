@@ -14,7 +14,7 @@ export function RecentActivities({ activities }: RecentActivitiesProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-right">أحدث الأنشطة المنجزة</CardTitle>
+        <CardTitle className="text-right">Recent Activities</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -33,4 +33,3 @@ export function RecentActivities({ activities }: RecentActivitiesProps) {
     </Card>
   )
 }
-

@@ -27,48 +27,48 @@ export default function UserManagement() {
     );
 
     const handleDeleteUser = (id: number) => {
-        if (window.confirm('هل أنت متأكد من أنك تريد حذف هذا المستخدم؟')) {
+        if (window.confirm('Are you sure you want to delete this user?')) {
             dispatch(deleteUser(id));
         }
     };
 
     if (loading) {
-        return <div className="p-6">جاري التحميل...</div>;
+        return <div className="p-6">Loading...</div>;
     }
 
     if (error) {
-        return <div className="p-6 text-red-500">خطأ: {error}</div>;
+        return <div className="p-6 text-red-500">Error: {error}</div>;
     }
 
     return (
         <div className="p-6 space-y-6">
             <Card>
                 <CardHeader>
-                    <CardTitle>إدارة المستخدمين</CardTitle>
+                    <CardTitle>User Management</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                         <div className="relative flex-1 max-w-md">
                             <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                             <Input
-                                placeholder="البحث عن المستخدمين..."
+                                placeholder="Search users..."
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
-                                className="pr-10 text-right"
+                                className="pr-10"
                             />
                         </div>
 
-                        {/* زر فتح نموذج إضافة مستخدم */}
+                        {/* Button to open Add User form */}
                         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                             <DialogTrigger asChild>
                                 <Button className="flex items-center gap-2">
                                     <Plus className="h-4 w-4" />
-                                    إضافة مستخدم
+                                    Add User
                                 </Button>
                             </DialogTrigger>
                             <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader>
-                                    <DialogTitle>إضافة مستخدم جديد</DialogTitle>
+                                    <DialogTitle>Add New User</DialogTitle>
                                 </DialogHeader>
                                 <AddUserForm onClose={() => setIsDialogOpen(false)} />
                             </DialogContent>
@@ -78,12 +78,12 @@ export default function UserManagement() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead className="text-right">صورة رمزية</TableHead>
-                                <TableHead className="text-right">الاسم</TableHead>
-                                <TableHead className="text-right">البريد الإلكتروني</TableHead>
-                                <TableHead className="text-right">الدور</TableHead>
-                                <TableHead className="text-right">الحالة</TableHead>
-                                <TableHead className="text-right">الإجراءات</TableHead>
+                                <TableHead>Avatar</TableHead>
+                                <TableHead>Name</TableHead>
+                                <TableHead>Email</TableHead>
+                                <TableHead>Role</TableHead>
+                                <TableHead>Status</TableHead>
+                                <TableHead>Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -96,27 +96,27 @@ export default function UserManagement() {
                                             </span>
                                         </div>
                                     </TableCell>
-                                    <TableCell className="text-right">{user.name}</TableCell>
-                                    <TableCell className="text-right">{user.email}</TableCell>
-                                    <TableCell className="text-right">{user.role}</TableCell>
-                                    <TableCell className="text-right">
+                                    <TableCell>{user.name}</TableCell>
+                                    <TableCell>{user.email}</TableCell>
+                                    <TableCell>{user.role}</TableCell>
+                                    <TableCell>
                                         <span
                                             className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                                                user.status === 'نشط'
+                                                user.status === 'Active'
                                                 ? 'bg-green-100 text-green-800'
                                                 : 'bg-red-100 text-red-800'
                                             }`}
                                         >   
-                                            {user.status === 'نشط' ? (
-                                                <CheckCircle className="h-3 w-3 ml-1" />
+                                            {user.status === 'Active' ? (
+                                                <CheckCircle className="h-3 w-3 mr-1" />
                                             ) : (
-                                                <XCircle className="h-3 w-3 ml-1" />
+                                                <XCircle className="h-3 w-3 mr-1" />
                                             )}
                                             {user.status}
                                         </span>
                                     </TableCell>
-                                    <TableCell className="text-right">
-                                        <div className="flex justify-end gap-2">
+                                    <TableCell>
+                                        <div className="flex gap-2">
                                             <Button 
                                                 variant="ghost" 
                                                 size="icon"

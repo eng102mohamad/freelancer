@@ -12,16 +12,16 @@ interface ProjectStatusChartProps {
 
 export function ProjectStatusChart({ data }: ProjectStatusChartProps) {
   const chartData = [
-    { name: 'مكتمل', value: data.completed, fill: '#3b82f6' },
-    { name: 'مستمر', value: data.inProgress, fill: '#ef4444' },
-    { name: 'معلق', value: data.pending, fill: '#f97316' },
-    { name: 'ملغي', value: data.cancelled, fill: '#eab308' }
+    { name: 'Completed', value: data.completed, fill: '#3b82f6' },
+    { name: 'In Progress', value: data.inProgress, fill: '#ef4444' },
+    { name: 'Pending', value: data.pending, fill: '#f97316' },
+    { name: 'Cancelled', value: data.cancelled, fill: '#eab308' }
   ]
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-right">حالة المشروع</CardTitle>
+        <CardTitle className="text-right">Project Status</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
@@ -51,4 +51,3 @@ export function ProjectStatusChart({ data }: ProjectStatusChartProps) {
     </Card>
   )
 }
-

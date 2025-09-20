@@ -16,7 +16,7 @@ const AddProjectModal = ({ isOpen, onClose, onSave, project }: AddProjectModalPr
   const [title, setTitle] = useState('');
   const [client, setClient] = useState('');
   const [startDate, setStartDate] = useState('');
-  const [status, setStatus] = useState<'مكتمل' | 'نشط' | 'متوقف'>('نشط');
+  const [status, setStatus] = useState<'Completed' | 'Active' | 'On Hold'>('Active');
 
   useEffect(() => {
     if (project) {
@@ -39,19 +39,19 @@ const AddProjectModal = ({ isOpen, onClose, onSave, project }: AddProjectModalPr
     setTitle('');
     setClient('');
     setStartDate('');
-    setStatus('نشط');
+    setStatus('Active');
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="sm:max-w-[500px]">
         <DialogHeader>
-          <DialogTitle>{project ? 'تعديل المشروع' : 'إضافة مشروع جديد'}</DialogTitle>
+          <DialogTitle>{project ? 'Edit Project' : 'Add New Project'}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="title" className="text-right">العنوان</Label>
+              <Label htmlFor="title" className="text-right">Title</Label>
               <Input
                 id="title"
                 value={title}
@@ -61,7 +61,7 @@ const AddProjectModal = ({ isOpen, onClose, onSave, project }: AddProjectModalPr
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="client" className="text-right">العميل</Label>
+              <Label htmlFor="client" className="text-right">Client</Label>
               <Input
                 id="client"
                 value={client}
@@ -71,7 +71,7 @@ const AddProjectModal = ({ isOpen, onClose, onSave, project }: AddProjectModalPr
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="startDate" className="text-right">تاريخ البدء</Label>
+              <Label htmlFor="startDate" className="text-right">Start Date</Label>
               <Input
                 id="startDate"
                 type="date"
@@ -82,22 +82,22 @@ const AddProjectModal = ({ isOpen, onClose, onSave, project }: AddProjectModalPr
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label htmlFor="status" className="text-right">الحالة</Label>
+              <Label htmlFor="status" className="text-right">Status</Label>
               <Select value={status} onValueChange={(value: any) => setStatus(value)}>
                 <SelectTrigger className="col-span-3">
-                  <SelectValue placeholder="اختر الحالة" />
+                  <SelectValue placeholder="Select status" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="مكتمل">مكتمل</SelectItem>
-                  <SelectItem value="نشط">نشط</SelectItem>
-                  <SelectItem value="متوقف">متوقف</SelectItem>
+                  <SelectItem value="Completed">Completed</SelectItem>
+                  <SelectItem value="Active">Active</SelectItem>
+                  <SelectItem value="On Hold">On Hold</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
           <DialogFooter>
-            <Button type="button" variant="outline" onClick={onClose}>إلغاء</Button>
-            <Button type="submit">{project ? 'تحديث' : 'حفظ'}</Button>
+            <Button type="button" variant="outline" onClick={onClose}>Cancel</Button>
+            <Button type="submit">{project ? 'Update' : 'Save'}</Button>
           </DialogFooter>
         </form>
       </DialogContent>

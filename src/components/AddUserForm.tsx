@@ -23,12 +23,12 @@ import {
 } from '@/components/ui/select';
 import { DialogFooter } from '@/components/ui/dialog';
 
-// تعريف Schema للتحقق من صحة البيانات
+// Validation schema definition
 const formSchema = z.object({
-  name: z.string().min(2, "الاسم مطلوب"),
-  email: z.string().email("البريد الإلكتروني غير صالح"),
-  role: z.enum(['عميل', 'مطور', 'مدير']),
-  status: z.enum(['نشط', 'غير نشط']),
+  name: z.string().min(2, "Name is required"),
+  email: z.string().email("Invalid email address"),
+  role: z.enum(['Client', 'Developer', 'Manager']),
+  status: z.enum(['Active', 'Inactive']),
 });
 
 export interface AddUserFormProps {
@@ -44,30 +44,30 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
     defaultValues: {
       name: "",
       email: "",
-      role: "عميل",
-      status: "نشط",
+      role: "Client",
+      status: "Active",
     },
   });
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
 
-    // توليد ID جديد (في الواقع يجب أن يأتي من السيرفر)
+    // Generate new ID (in reality should come from server)
     const newId = Date.now();
 
     const newUser = {
       id: newId,
       ...values,
-      avatar: `/avatars/avatar${(newId % 5) + 1}.png`, // صورة عشوائية مؤقتة
+      avatar: `/avatars/avatar${(newId % 5) + 1}.png`, // Temporary random avatar
     };
 
     dispatch(addUser(newUser));
 
-    // إغلاق النموذج بعد الإضافة
+    // Close form after adding
     setTimeout(() => {
       setIsSubmitting(false);
       onClose();
-    }, 500); // تأخير بسيط لمحاكاة التحميل
+    }, 500); // Small delay to simulate loading
   };
 
   return (
@@ -78,9 +78,9 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>الاسم الكامل</FormLabel>
+              <FormLabel>Full Name</FormLabel>
               <FormControl>
-                <Input placeholder="أدخل الاسم" {...field} />
+                <Input placeholder="Enter name" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -91,7 +91,7 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>البريد الإلكتروني</FormLabel>
+              <FormLabel>Email</FormLabel>
               <FormControl>
                 <Input placeholder="example@example.com" {...field} dir="ltr" />
               </FormControl>
@@ -104,17 +104,17 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
           name="role"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>الدور</FormLabel>
+              <FormLabel>Role</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="اختر الدور" />
+                    <SelectValue placeholder="Select role" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="عميل">عميل</SelectItem>
-                  <SelectItem value="مطور">مطور</SelectItem>
-                  <SelectItem value="مدير">مدير</SelectItem>
+                  <SelectItem value="Client">Client</SelectItem>
+                  <SelectItem value="Developer">Developer</SelectItem>
+                  <SelectItem value="Manager">Manager</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -126,16 +126,16 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
           name="status"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>الحالة</FormLabel>
+              <FormLabel>Status</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="اختر الحالة" />
+                    <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="نشط">نشط</SelectItem>
-                  <SelectItem value="غير نشط">غير نشط</SelectItem>
+                  <SelectItem value="Active">Active</SelectItem>
+                  <SelectItem value="Inactive">Inactive</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -145,10 +145,10 @@ export default function AddUserForm({ onClose }: AddUserFormProps) {
 
         <DialogFooter className="gap-3">
           <Button type="button" variant="outline" onClick={onClose} disabled={isSubmitting}>
-            إلغاء
+            Cancel
           </Button>
           <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "جاري الإضافة..." : "إضافة المستخدم"}
+            {isSubmitting ? "Adding..." : "Add User"}
           </Button>
         </DialogFooter>
       </form>

@@ -1,7 +1,6 @@
-
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-// تعريف واجهة Review
+// Define Review interface
 export interface Review {
   id: string
   projectName: string
@@ -24,39 +23,39 @@ const initialState: ReviewsState = {
   reviews: [
     {
       id: "1",
-      projectName: "تطوير تطبيق جوال",
-      author: "سارة خاطر",
+      projectName: "Mobile App Development",
+      author: "Sara Khatir",
       rating: 4,
-      comment: "عمل جيد، وإخبارنا الرقمات في بعض العوامل. كانت عملية التكامل سلسة",
+      comment: "Good work, but there were some issues in certain areas. The integration process was smooth",
       date: "2024-01-10",
-      status: "مقبولة"
+      status: "Accepted"
     },
     {
       id: "2",
-      projectName: "حملة تسويقية رقمية",
-      author: "أحمد محمد",
+      projectName: "Digital Marketing Campaign",
+      author: "Ahmed Mohamed",
       rating: 5,
-      comment: "تلتوي لذلك من الحملة التسويقية زيادة أعضاء في القاعدة والتفاعلات، بناءً على التحليل",
+      comment: "The marketing campaign resulted in increased user base and engagement, based on analysis",
       date: "2024-01-12",
-      status: "مقبولة"
+      status: "Accepted"
     },
     {
       id: "3",
-      projectName: "إعداد تسليم الموقع الإلكتروني",
-      author: "محمد علي",
+      projectName: "Website Delivery Setup",
+      author: "Mohamed Ali",
       rating: 3,
-      comment: "كان المشروع مقبولا لكن كانت هناك بعض التأخيرات هي الشباب ما أقر على الجدول الزمني",
+      comment: "The project was acceptable but there were some delays that affected the timeline",
       date: "2024-01-14",
-      status: "قيد المراجعة"
+      status: "Under Review"
     },
     {
       id: "4",
-      projectName: "API إعداد واجهة برمجة التطبيقات",
-      author: "فاطمة إبراهيم",
+      projectName: "API Integration Setup",
+      author: "Fatima Ibrahim",
       rating: 2,
-      comment: "جودة برمجية عامة في الخطأ والوصول بين مساحة القيادة في يتم إشارة من المناسبات الأساسية",
+      comment: "Overall code quality had errors and access issues in the command space, basic functionality was affected",
       date: "2024-01-15",
-      status: "مرفوضة"
+      status: "Rejected"
     }
   ],
   filters: {
@@ -81,7 +80,7 @@ export const reviewsSlice = createSlice({
   }
 })
 
-// تصدير جميع الـ actions
+// Export all actions
 export const { 
   deleteReview, 
   setRatingFilter, 

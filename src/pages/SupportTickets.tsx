@@ -64,7 +64,7 @@ const SupportTickets: React.FC = () => {
   }
 
   const handleDeleteTicket = (id: string) => {
-    if (window.confirm("هل أنت متأكد من أنك تريد حذف هذه التذكرة؟")) {
+    if (window.confirm("Are you sure you want to delete this ticket?")) {
       dispatch(deleteTicket(id))
     }
   }
@@ -76,15 +76,15 @@ const SupportTickets: React.FC = () => {
 
   const getStatusBadge = (status: string) => {
     const statusColors: Record<string, string> = {
-      "مغلق": "bg-green-100 text-green-800",
-      "قيد التقدم": "bg-yellow-100 text-yellow-800",
-      "مفتوح": "bg-red-100 text-red-800",
+      "Closed": "bg-green-100 text-green-800",
+      "In Progress": "bg-yellow-100 text-yellow-800",
+      "Open": "bg-red-100 text-red-800",
     }
     return (
       <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${statusColors[status]}`}>
-        {status === "مغلق" && <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>}
-        {status === "قيد التقدم" && <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clipRule="evenodd" /></svg>}
-        {status === "مفتوح" && <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clipRule="evenodd" /></svg>}
+        {status === "Closed" && <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" /></svg>}
+        {status === "In Progress" && <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clipRule="evenodd" /></svg>}
+        {status === "Open" && <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.414-1.414L11 9.586V6z" clipRule="evenodd" /></svg>}
         {status}
       </span>
     )
@@ -101,9 +101,9 @@ const SupportTickets: React.FC = () => {
 
   const getPriorityText = (priority: string) => {
     const texts: Record<string, string> = {
-      High: "عالية",
-      Medium: "متوسطة",
-      Low: "منخفضة",
+      High: "High",
+      Medium: "Medium",
+      Low: "Low",
     }
     return texts[priority] || priority
   }
@@ -111,91 +111,91 @@ const SupportTickets: React.FC = () => {
   return (
     <div className="p-4 sm:p-6 space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <h1 className="text-xl sm:text-2xl font-bold text-gray-800">تذاكر الدعم</h1>
-        {/* تم حذف زر إنشاء تذكرة جديدة */}
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-800">Support Tickets</h1>
+        {/* Removed create new ticket button */}
       </div>
 
-      {/* أزرار التصفية */}
+      {/* Filter Buttons */}
       <div className="flex flex-col sm:flex-row gap-4 items-end">
         <div className="relative flex-1">
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
-            placeholder="ابحث عن التذاكر..."
+            placeholder="Search tickets..."
             className="pr-10 text-right"
             value={filters.search}
             onChange={handleSearchChange}
           />
         </div>
         
-        {/* تصفية الحالة للشاشات الكبيرة */}
+        {/* Status filter for large screens */}
         <Select value={filters.status} onValueChange={handleStatusChange}>
           <SelectTrigger className="hidden sm:flex w-[180px] border-gray-300">
-            <SelectValue placeholder="تصفية حسب الحالة" />
+            <SelectValue placeholder="Filter by status" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">جميع الحالات</SelectItem>
-            <SelectItem value="مفتوح">مفتوح</SelectItem>
-            <SelectItem value="قيد التقدم">قيد التقدم</SelectItem>
-            <SelectItem value="مغلق">مغلق</SelectItem>
+            <SelectItem value="all">All Statuses</SelectItem>
+            <SelectItem value="Open">Open</SelectItem>
+            <SelectItem value="In Progress">In Progress</SelectItem>
+            <SelectItem value="Closed">Closed</SelectItem>
           </SelectContent>
         </Select>
         
-        {/* تصفية الأولوية للشاشات الكبيرة */}
+        {/* Priority filter for large screens */}
         <Select value={filters.priority} onValueChange={handlePriorityChange}>
           <SelectTrigger className="hidden sm:flex w-[180px] border-gray-300">
-            <SelectValue placeholder="تصفية حسب الأولوية" />
+            <SelectValue placeholder="Filter by priority" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">جميع الأولويات</SelectItem>
-            <SelectItem value="High">عالية</SelectItem>
-            <SelectItem value="Medium">متوسطة</SelectItem>
-            <SelectItem value="Low">منخفضة</SelectItem>
+            <SelectItem value="all">All Priorities</SelectItem>
+            <SelectItem value="High">High</SelectItem>
+            <SelectItem value="Medium">Medium</SelectItem>
+            <SelectItem value="Low">Low</SelectItem>
           </SelectContent>
         </Select>
         
-        {/* زر التصفية للشاشات الصغيرة */}
+        {/* Filter button for small screens */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="sm:hidden flex-1">
               <Filter className="h-4 w-4 ml-2" />
-              تصفية
+              Filter
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-48">
             <DropdownMenuItem onClick={() => handleStatusChange("all")}>
-              جميع الحالات
+              All Statuses
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleStatusChange("مفتوح")}>
-              مفتوح
+            <DropdownMenuItem onClick={() => handleStatusChange("Open")}>
+              Open
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleStatusChange("قيد التقدم")}>
-              قيد التقدم
+            <DropdownMenuItem onClick={() => handleStatusChange("In Progress")}>
+              In Progress
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleStatusChange("مغلق")}>
-              مغلق
+            <DropdownMenuItem onClick={() => handleStatusChange("Closed")}>
+              Closed
             </DropdownMenuItem>
             <hr className="my-2" />
             <DropdownMenuItem onClick={() => handlePriorityChange("all")}>
-              جميع الأولويات
+              All Priorities
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => handlePriorityChange("High")}>
-              عالية
+              High
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => handlePriorityChange("Medium")}>
-              متوسطة
+              Medium
             </DropdownMenuItem>
             <DropdownMenuItem onClick={() => handlePriorityChange("Low")}>
-              منخفضة
+              Low
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
 
-      {/* بطاقات التذاكر للشاشات الصغيرة */}
+      {/* Ticket cards for small screens */}
       <div className="lg:hidden space-y-4">
         {tickets.length === 0 ? (
           <div className="text-center py-8 text-gray-500 bg-white rounded-lg shadow">
-            لا توجد تذاكر تطابق معايير البحث
+            No tickets match the search criteria
           </div>
         ) : (
           tickets.map((ticket: Ticket) => (
@@ -247,25 +247,25 @@ const SupportTickets: React.FC = () => {
         )}
       </div>
 
-      {/* جدول التذاكر للشاشات الكبيرة */}
+      {/* Tickets table for large screens */}
       <div className="hidden lg:block bg-white rounded-lg shadow-sm border overflow-hidden">
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="text-right">معرف التذكرة</TableHead>
-              <TableHead className="text-right">الموضوع</TableHead>
-              <TableHead className="text-right">المستخدم</TableHead>
-              <TableHead className="text-right">الحالة</TableHead>
-              <TableHead className="text-right">الأولوية</TableHead>
-              <TableHead className="text-right">تاريخ الإنشاء</TableHead>
-              <TableHead className="text-right">الإجراءات</TableHead>
+              <TableHead className="text-right">Ticket ID</TableHead>
+              <TableHead className="text-right">Subject</TableHead>
+              <TableHead className="text-right">User</TableHead>
+              <TableHead className="text-right">Status</TableHead>
+              <TableHead className="text-right">Priority</TableHead>
+              <TableHead className="text-right">Created Date</TableHead>
+              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {tickets.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={7} className="text-center py-8 text-gray-500">
-                  لا توجد تذاكر تطابق معايير البحث
+                  No tickets match the search criteria
                 </TableCell>
               </TableRow>
             ) : (
@@ -316,17 +316,17 @@ const SupportTickets: React.FC = () => {
         </Table>
       </div>
 
-      {/* تفاصيل التذكرة في عرض الجوال */}
+      {/* Ticket details in mobile view */}
       <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
         <DialogContent className="sm:max-w-[600px]">
           {selectedTicket && (
             <>
               <DialogHeader>
                 <DialogTitle className="flex justify-between items-center">
-                  <span>تفاصيل التذكرة #{selectedTicket.id}</span>
+                  <span>Ticket Details #{selectedTicket.id}</span>
                 </DialogTitle>
                 <DialogDescription>
-                  تذكرة من {selectedTicket.user}
+                  Ticket from {selectedTicket.user}
                 </DialogDescription>
               </DialogHeader>
               
@@ -346,7 +346,7 @@ const SupportTickets: React.FC = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-medium mb-2">الموضوع:</h4>
+                  <h4 className="font-medium mb-2">Subject:</h4>
                   <p className="text-gray-700 bg-gray-50 p-4 rounded-lg">
                     {selectedTicket.subject}
                   </p>
@@ -354,13 +354,13 @@ const SupportTickets: React.FC = () => {
                 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium mb-2">الأولوية:</h4>
+                    <h4 className="font-medium mb-2">Priority:</h4>
                     <p className={`font-medium ${getPriorityColor(selectedTicket.priority)}`}>
                       {getPriorityText(selectedTicket.priority)}
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-medium mb-2">تاريخ الإنشاء:</h4>
+                    <h4 className="font-medium mb-2">Created Date:</h4>
                     <p className="text-gray-700">{selectedTicket.date}</p>
                   </div>
                 </div>
@@ -374,7 +374,7 @@ const SupportTickets: React.FC = () => {
                     }}
                   >
                     <Trash2 className="h-4 w-4 ml-2 text-red-500" />
-                    حذف التذكرة
+                    Delete Ticket
                   </Button>
                 </div>
               </div>

@@ -20,13 +20,13 @@ import {
 } from "@/components/ui/sidebar"
 
 const menuItems = [
-  { title: "لوحة التحكم", icon: Home, path: "/dashboard" },
-  { title: "إدارة المستخدمين", icon: Users, path: "/dashboard/users" },
-  { title: "إدارة المشاريع", icon: FolderOpen, path: "/dashboard/projects" },
-  { title: "الخدمات المالية", icon: DollarSign, path: "/dashboard/finance" },
-  { title: "إدارة المراجعات", icon: Star, path: "/dashboard/reviews" },
-  { title: "تذاكر الدعم", icon: HelpCircle, path: "/dashboard/support-tickets" },
-  { title: "الإعدادات العامة", icon: Settings, path: "/dashboard/settings" },
+  { title: "Dashboard", icon: Home, path: "/dashboard" },
+  { title: "Users Management", icon: Users, path: "/dashboard/users" },
+  { title: "Projects Management", icon: FolderOpen, path: "/dashboard/projects" },
+  { title: "Financial Services", icon: DollarSign, path: "/dashboard/finance" },
+  { title: "Reviews Management", icon: Star, path: "/dashboard/reviews" },
+  { title: "Support Tickets", icon: HelpCircle, path: "/dashboard/support-tickets" },
+  { title: "General Settings", icon: Settings, path: "/dashboard/settings" },
 ]
 
 export function DashboardSidebar() {
@@ -34,13 +34,13 @@ export function DashboardSidebar() {
     <Sidebar className="border-l border-gray-200">
       <SidebarContent>
         <SidebarGroup>
-          {/* الشعار */}
+          {/* Logo */}
           <div className="px-6 py-6 border-b border-gray-100">
-            <div className="flex items-center gap-3 justify-end">
-              <span className="font-semibold text-lg text-gray-800">لوحة التحكم</span>
+            <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">✦</span>
               </div>
+              <span className="font-semibold text-lg text-gray-800">Dashboard</span>
             </div>
           </div>
 
@@ -50,7 +50,7 @@ export function DashboardSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton 
                     asChild 
-                    className="justify-end px-6 py-3 my-1 transition-all duration-200 hover:bg-red-50 rounded-lg"
+                    className="justify-start px-6 py-3 my-1 transition-all duration-200 hover:bg-red-50 rounded-lg"
                   >
                     <NavLink 
                       to={item.path}
@@ -62,10 +62,10 @@ export function DashboardSidebar() {
                         }`
                       }
                     >
-                      <span className="text-right flex-1 font-medium">
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
+                      <span className="font-medium">
                         {item.title}
                       </span>
-                      <item.icon className="h-5 w-5 flex-shrink-0" />
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -80,22 +80,22 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton 
                   asChild 
-                  className="justify-end px-6 py-3 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="justify-start px-6 py-3 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <a href="#" className="flex items-center gap-2">
                     <HelpCircle className="h-4 w-4" />
-                    <span>الدعم والمساعدة</span>
+                    <span>Support & Help</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton 
                   asChild 
-                  className="justify-end px-6 py-3 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+                  className="justify-start px-6 py-3 text-sm text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                 >
                   <a href="#" className="flex items-center gap-2">
                     <LogOut className="h-4 w-4" />
-                    <span>تسجيل الخروج</span>
+                    <span>Logout</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>

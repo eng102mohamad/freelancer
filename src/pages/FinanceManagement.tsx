@@ -28,18 +28,18 @@ export default function FinanceManagement() {
   );
 
   const handleDeleteTransaction = (id: string) => {
-    if (window.confirm('هل أنت متأكد من أنك تريد حذف هذه المعاملة؟')) {
+    if (window.confirm('Are you sure you want to delete this transaction?')) {
       dispatch(deleteTransaction(id));
     }
   };
 
   const monthlyRevenueData = [
-    { month: 'يناير', revenue: 14000 },
-    { month: 'فبراير', revenue: 16000 },
-    { month: 'مارس', revenue: 21000 },
-    { month: 'أبريل', revenue: 19000 },
-    { month: 'مايو', revenue: 23000 },
-    { month: 'يونيو', revenue: monthlyRevenue },
+    { month: 'January', revenue: 14000 },
+    { month: 'February', revenue: 16000 },
+    { month: 'March', revenue: 21000 },
+    { month: 'April', revenue: 19000 },
+    { month: 'May', revenue: 23000 },
+    { month: 'June', revenue: monthlyRevenue },
   ];
 
   return (
@@ -48,45 +48,45 @@ export default function FinanceManagement() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">إجمالي الإيرادات</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-500">Total Revenue</CardTitle>
             <RefreshCw className="h-4 w-4 text-gray-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-600">${totalRevenue.toLocaleString()}</div>
-            <p className="text-sm text-gray-500 mt-1">زيادة %15 عن الشهر الماضي</p>
+            <p className="text-sm text-gray-500 mt-1">15% increase from last month</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">السحوبات المعلقة</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-500">Pending Withdrawals</CardTitle>
             <Search className="h-4 w-4 text-gray-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-orange-600">${pendingTransactions.toLocaleString()}</div>
-            <p className="text-sm text-gray-500 mt-1">مراجعة 5 طلبات</p>
+            <p className="text-sm text-gray-500 mt-1">5 requests under review</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">معاملات متأخرة</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-500">Delayed Transactions</CardTitle>
             <XCircle className="h-4 w-4 text-red-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-red-600">8</div>
-            <p className="text-sm text-gray-500 mt-1">تحتاج إلى تحقيق عاجل</p>
+            <p className="text-sm text-gray-500 mt-1">Requires urgent follow-up</p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-gray-500">إيرادات الشهر الحالي</CardTitle>
+            <CardTitle className="text-sm font-medium text-gray-500">Current Month Revenue</CardTitle>
             <DollarSign className="h-4 w-4 text-green-400" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">${monthlyRevenue.toLocaleString()}</div>
-            <p className="text-sm text-gray-500 mt-1">وأفق للترقيات</p>
+            <p className="text-sm text-gray-500 mt-1">Potential for growth</p>
           </CardContent>
         </Card>
       </div>
@@ -94,8 +94,8 @@ export default function FinanceManagement() {
       {/* Chart */}
       <Card>
         <CardHeader>
-          <CardTitle>الإيرادات الشهرية</CardTitle>
-          <p className="text-sm text-gray-500">الإيرادات الإجمالية خلال الأشهر الستة الماضية.</p>
+          <CardTitle>Monthly Revenue</CardTitle>
+          <p className="text-sm text-gray-500">Total revenue over the past six months.</p>
         </CardHeader>
         <CardContent>
           <BarChart data={monthlyRevenueData} />
@@ -105,22 +105,22 @@ export default function FinanceManagement() {
       {/* Table */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>سجل المعاملات</CardTitle>
+          <CardTitle>Transaction History</CardTitle>
           <div className="flex gap-2">
             <Button variant="outline" size="sm">
               <Filter className="h-4 w-4 mr-1" />
-              تصنيف
+              Filter
             </Button>
             <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
               <DialogTrigger asChild>
                 <Button>
                   <Plus className="h-4 w-4 mr-1" />
-                  معاملة جديدة
+                  New Transaction
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>إضافة معاملة جديدة</DialogTitle>
+                  <DialogTitle>Add New Transaction</DialogTitle>
                 </DialogHeader>
                 <AddTransactionForm onClose={() => setIsDialogOpen(false)} />
               </DialogContent>
@@ -132,7 +132,7 @@ export default function FinanceManagement() {
             <div className="relative flex-1 max-w-md">
               <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input
-                placeholder="البحث عن المعاملات..."
+                placeholder="Search transactions..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="pr-10 text-right"
@@ -143,18 +143,18 @@ export default function FinanceManagement() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className="text-right">معرف المعاملة</TableHead>
-                <TableHead className="text-right">التاريخ</TableHead>
-                <TableHead className="text-right">المستخدم</TableHead>
-                <TableHead className="text-right">النوع</TableHead>
-                <TableHead className="text-right">المبلغ</TableHead>
-                <TableHead className="text-right">الحالة</TableHead>
-                <TableHead className="text-right">الإجراءات</TableHead>
+                <TableHead className="text-right">Transaction ID</TableHead>
+                <TableHead className="text-right">Date</TableHead>
+                <TableHead className="text-right">User</TableHead>
+                <TableHead className="text-right">Type</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="text-right">Status</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {filteredTransactions.map((tx) => (
-                <TableRow key={tx.id} className={tx.status === 'معلقة' ? 'bg-red-50' : ''}>
+                <TableRow key={tx.id} className={tx.status === 'Pending' ? 'bg-red-50' : ''}>
                   <TableCell className="text-right">{tx.id}</TableCell>
                   <TableCell className="text-right">{tx.date}</TableCell>
                   <TableCell className="text-right">{tx.user}</TableCell>
@@ -165,16 +165,16 @@ export default function FinanceManagement() {
                   <TableCell className="text-right">
                     <span
                       className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                        tx.status === 'مكتملة'
+                        tx.status === 'Completed'
                           ? 'bg-green-100 text-green-800'
-                          : tx.status === 'معلقة'
+                          : tx.status === 'Pending'
                           ? 'bg-yellow-100 text-yellow-800'
                           : 'bg-red-100 text-red-800'
                       }`}
                     >
-                      {tx.status === 'مكتملة' && <CheckCircle className="h-3 w-3 ml-1" />}
-                      {tx.status === 'معلقة' && <Clock className="h-3 w-3 ml-1" />}
-                      {tx.status === 'منتهية' && <XCircle className="h-3 w-3 ml-1" />}
+                      {tx.status === 'Completed' && <CheckCircle className="h-3 w-3 ml-1" />}
+                      {tx.status === 'Pending' && <Clock className="h-3 w-3 ml-1" />}
+                      {tx.status === 'Failed' && <XCircle className="h-3 w-3 ml-1" />}
                       {tx.status}
                     </span>
                   </TableCell>

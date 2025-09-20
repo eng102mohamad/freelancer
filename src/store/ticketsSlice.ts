@@ -5,7 +5,7 @@ export interface Ticket {
   subject: string
   user: string
   priority: 'High' | 'Medium' | 'Low'
-  status: 'مفتوح' | 'قيد التقدم' | 'مغلق'
+  status: 'Open' | 'In Progress' | 'Closed'
   date: string
 }
 
@@ -25,7 +25,7 @@ const initialState: TicketsState = {
       subject: "Login Authentication Failure",
       user: "Fatima Zahra",
       priority: "High",
-      status: "مفتوح",
+      status: "Open",
       date: "2024-03-22"
     },
     {
@@ -33,39 +33,7 @@ const initialState: TicketsState = {
       subject: "Billing Discrepancy on Invoice #453",
       user: "Ahmed Ali",
       priority: "Medium",
-      status: "قيد التقدم",
-      date: "2024-03-21"
-    },
-    {
-      id: "TKT003",
-      subject: "Feature Request: Dark Mode Theme",
-      user: "Layla Khan",
-      priority: "Low",
-      status: "مغلق",
-      date: "2024-03-20"
-    },
-    {
-      id: "TKT004",
-      subject: "Project X Bug Report: Data Not Loading",
-      user: "Khalid Hassan",
-      priority: "High",
-      status: "مفتوح",
-      date: "2024-03-22"
-    },
-    {
-      id: "TKT005",
-      subject: "Account Deactivation Request",
-      user: "Sara Mustafa",
-      priority: "High",
-      status: "قيد التقدم",
-      date: "2024-03-19"
-    },
-    {
-      id: "TKT006",
-      subject: "Password Reset Not Working",
-      user: "Tariq Mahmoud",
-      priority: "Medium",
-      status: "مفتوح",
+      status: "In Progress",
       date: "2024-03-21"
     }
   ],

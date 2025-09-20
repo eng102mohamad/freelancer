@@ -23,11 +23,11 @@ import {
 } from '@/components/ui/select';
 
 const formSchema = z.object({
-  id: z.string().min(1, "معرف المعاملة مطلوب"),
-  user: z.string().min(1, "اسم المستخدم مطلوب"),
+  id: z.string().min(1, "Transaction ID is required"),
+  user: z.string().min(1, "Username is required"),
   type: z.enum(['Deposit', 'Withdrawal']),
-  amount: z.number().min(0.01, "المبلغ يجب أن يكون أكبر من صفر"),
-  status: z.enum(['مكتملة', 'معلقة', 'منتهية']),
+  amount: z.number().min(0.01, "Amount must be greater than zero"),
+  status: z.enum(['Completed', 'Pending', 'Failed']),
 });
 
 interface AddTransactionFormProps {
@@ -45,7 +45,7 @@ export default function AddTransactionForm({ onClose }: AddTransactionFormProps)
       user: '',
       type: 'Deposit',
       amount: 0,
-      status: 'مكتملة',
+      status: 'Completed',
     },
   });
 
@@ -70,7 +70,7 @@ export default function AddTransactionForm({ onClose }: AddTransactionFormProps)
           name="id"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>معرف المعاملة</FormLabel>
+              <FormLabel>Transaction ID</FormLabel>
               <FormControl>
                 <Input placeholder="TXN001" {...field} />
               </FormControl>
@@ -83,9 +83,9 @@ export default function AddTransactionForm({ onClose }: AddTransactionFormProps)
           name="user"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>المستخدم</FormLabel>
+              <FormLabel>User</FormLabel>
               <FormControl>
-                <Input placeholder="علي سميث" {...field} />
+                <Input placeholder="Ali Smith" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -96,11 +96,11 @@ export default function AddTransactionForm({ onClose }: AddTransactionFormProps)
           name="type"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>النوع</FormLabel>
+              <FormLabel>Type</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="اختر نوع المعاملة" />
+                    <SelectValue placeholder="Select transaction type" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -117,7 +117,7 @@ export default function AddTransactionForm({ onClose }: AddTransactionFormProps)
           name="amount"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>المبلغ</FormLabel>
+              <FormLabel>Amount</FormLabel>
               <FormControl>
                 <Input
                   type="number"
@@ -137,17 +137,17 @@ export default function AddTransactionForm({ onClose }: AddTransactionFormProps)
           name="status"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>الحالة</FormLabel>
+              <FormLabel>Status</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="اختر الحالة" />
+                    <SelectValue placeholder="Select status" />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="مكتملة">مكتملة</SelectItem>
-                  <SelectItem value="معلقة">معلقة</SelectItem>
-                  <SelectItem value="منتهية">منتهية</SelectItem>
+                  <SelectItem value="Completed">Completed</SelectItem>
+                  <SelectItem value="Pending">Pending</SelectItem>
+                  <SelectItem value="Failed">Failed</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -156,7 +156,7 @@ export default function AddTransactionForm({ onClose }: AddTransactionFormProps)
         />
 
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "جاري الإضافة..." : "إضافة المعاملة"}
+          {isSubmitting ? "Adding..." : "Add Transaction"}
         </Button>
       </form>
     </Form>

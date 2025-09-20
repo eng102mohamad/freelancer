@@ -18,40 +18,40 @@ export default function Dashboard() {
   return (
     <div className="flex-1 p-6 bg-gray-50">
       <div className="space-y-6">
-        {/* العنوان الرئيسي */}
+        {/* Main Title */}
         <div>
-          <h1 className="text-3xl font-bold text-right">نظرة عامة على لوحة التحكم</h1>
+          <h1 className="text-3xl font-bold text-right">Dashboard Overview</h1>
         </div>
 
-        {/* بطاقات الإحصائيات */}
+        {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <StatsCard
-            title="إجمالي المستخدمين"
+            title="Total Users"
             value={totalUsers}
-            description="يشمل عدد المستخدمين المسجلين"
+            description="Total number of registered users"
             icon={<Users className="h-4 w-4" />}
           />
           <StatsCard
-            title="المشاريع النشطة"
+            title="Active Projects"
             value={activeProjects}
-            description="المشاريع قيد التطوير"
+            description="Projects currently in development"
             icon={<FolderOpen className="h-4 w-4" />}
           />
           <StatsCard
-            title="إجمالي المعاملات"
+            title="Total Transactions"
             value={`$${totalTransactions.toLocaleString('en-US')}`}
-            description="القيمة الإجمالية لجميع المعاملات"
+            description="Total value of all transactions"
             icon={<DollarSign className="h-4 w-4" />}
           />
         </div>
 
-        {/* المخططات */}
+        {/* Charts */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <ProjectStatusChart data={projectStatus} />
           <UserDistributionChart data={userDistribution} />
         </div>
 
-        {/* الأنشطة الأخيرة */}
+        {/* Recent Activities */}
         <div className="grid grid-cols-1">
           <RecentActivities activities={recentActivities} />
         </div>

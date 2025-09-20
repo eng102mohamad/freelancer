@@ -66,7 +66,7 @@ const ReviewsManagement: React.FC = () => {
   }
 
   const handleDeleteReview = (id: string) => {
-    if (window.confirm("هل أنت متأكد من أنك تريد حذف هذه المراجعة؟")) {
+    if (window.confirm("Are you sure you want to delete this review?")) {
       dispatch(deleteReview(id))
     }
   }
@@ -95,12 +95,12 @@ const ReviewsManagement: React.FC = () => {
     )
   }
 
-  // دالة للحصول على لون الحالة
+  // Function to get status color
   const getStatusColor = (status: string) => {
     const statusColors: Record<string, string> = {
-      "مقبولة": "bg-green-100 text-green-800",
-      "قيد المراجعة": "bg-yellow-100 text-yellow-800",
-      "مرفوضة": "bg-red-100 text-red-800"
+      "Approved": "bg-green-100 text-green-800",
+      "Pending Review": "bg-yellow-100 text-yellow-800",
+      "Rejected": "bg-red-100 text-red-800"
     }
     return statusColors[status] || "bg-gray-100 text-gray-800"
   }
@@ -109,15 +109,15 @@ const ReviewsManagement: React.FC = () => {
     <div className="min-h-screen bg-gray-50 flex">
       <main className="flex-1 p-4 sm:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
-          {/* العنوان وأزرار التصفية */}
+          {/* Title and Filter Buttons */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">إدارة المراجعات</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">Reviews Management</h1>
             
             <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
               <div className="relative w-full sm:w-auto">
                 <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
-                  placeholder="بحث عن المراجعات..."
+                  placeholder="Search reviews..."
                   className="pr-10 w-full"
                   value={filters.search}
                   onChange={handleSearchChange}
@@ -125,59 +125,59 @@ const ReviewsManagement: React.FC = () => {
               </div>
               
               <div className="flex gap-2">
-                {/* زر التصفية للشاشات الصغيرة */}
+                {/* Filter button for small screens */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button variant="outline" className="sm:hidden flex-1">
                       <Filter className="h-4 w-4 ml-2" />
-                      تصفية
+                      Filter
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem onClick={() => handleFilterChange("all")}>
-                      جميع التقييمات
+                      All Ratings
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleFilterChange("5")}>
-                      5 نجوم
+                      5 Stars
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleFilterChange("4")}>
-                      4 نجوم
+                      4 Stars
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleFilterChange("3")}>
-                      3 نجوم
+                      3 Stars
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleFilterChange("2")}>
-                      2 نجوم
+                      2 Stars
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => handleFilterChange("1")}>
-                      1 نجمة
+                      1 Star
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
 
-                {/* قائمة التصفية للشاشات الكبيرة */}
+                {/* Filter list for large screens */}
                 <Select value={filters.rating} onValueChange={handleFilterChange}>
                   <SelectTrigger className="hidden sm:flex w-[180px] border-gray-300">
-                    <SelectValue placeholder="تصفية حسب التقييم" />
+                    <SelectValue placeholder="Filter by rating" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="all">جميع التقييمات</SelectItem>
-                    <SelectItem value="5">5 نجوم</SelectItem>
-                    <SelectItem value="4">4 نجوم</SelectItem>
-                    <SelectItem value="3">3 نجوم</SelectItem>
-                    <SelectItem value="2">2 نجوم</SelectItem>
-                    <SelectItem value="1">1 نجمة</SelectItem>
+                    <SelectItem value="all">All Ratings</SelectItem>
+                    <SelectItem value="5">5 Stars</SelectItem>
+                    <SelectItem value="4">4 Stars</SelectItem>
+                    <SelectItem value="3">3 Stars</SelectItem>
+                    <SelectItem value="2">2 Stars</SelectItem>
+                    <SelectItem value="1">1 Star</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
           </div>
 
-          {/* بطاقات المراجعات للشاشات الصغيرة */}
+          {/* Review cards for small screens */}
           <div className="lg:hidden space-y-4">
             {reviews.length === 0 ? (
               <div className="text-center py-8 text-gray-500 bg-white rounded-lg shadow">
-                لا توجد مراجعات تطابق معايير البحث
+                No reviews match the search criteria
               </div>
             ) : (
               reviews.map((review: Review) => (
@@ -226,18 +226,18 @@ const ReviewsManagement: React.FC = () => {
             )}
           </div>
 
-          {/* جدول المراجعات للشاشات الكبيرة */}
+          {/* Reviews table for large screens */}
           <div className="hidden lg:block bg-white rounded-lg shadow-sm border overflow-hidden">
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="text-right">المراجع</TableHead>
-                  <TableHead className="text-right">المشروع</TableHead>
-                  <TableHead className="text-center">التقييم</TableHead>
-                  <TableHead className="text-right">الحالة</TableHead>
-                  <TableHead className="text-right">المراجعة</TableHead>
-                  <TableHead className="text-right">التاريخ</TableHead>
-                  <TableHead className="text-right">الإجراءات</TableHead>
+                  <TableHead className="text-right">Reviewer</TableHead>
+                  <TableHead className="text-right">Project</TableHead>
+                  <TableHead className="text-center">Rating</TableHead>
+                  <TableHead className="text-right">Status</TableHead>
+                  <TableHead className="text-right">Review</TableHead>
+                  <TableHead className="text-right">Date</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -289,24 +289,24 @@ const ReviewsManagement: React.FC = () => {
             
             {reviews.length === 0 && (
               <div className="text-center py-8 text-gray-500">
-                لا توجد مراجعات تطابق معايير البحث
+                No reviews match the search criteria
               </div>
             )}
           </div>
         </div>
       </main>
 
-      {/* تفاصيل المراجعة في عرض الجوال */}
+      {/* Review details in mobile view */}
       <Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
         <DialogContent className="sm:max-w-[600px]">
           {selectedReview && (
             <>
               <DialogHeader>
                 <DialogTitle className="flex justify-between items-center">
-                  <span>تفاصيل المراجعة</span>
+                  <span>Review Details</span>
                 </DialogTitle>
                 <DialogDescription>
-                  مراجعة من {selectedReview.author} لمشروع {selectedReview.projectName}
+                  Review from {selectedReview.author} for project {selectedReview.projectName}
                 </DialogDescription>
               </DialogHeader>
               
@@ -332,7 +332,7 @@ const ReviewsManagement: React.FC = () => {
                 </div>
                 
                 <div>
-                  <h4 className="font-medium mb-2">نص المراجعة:</h4>
+                  <h4 className="font-medium mb-2">Review Text:</h4>
                   <p className="text-gray-700 bg-gray-50 p-4 rounded-lg">
                     {selectedReview.comment}
                   </p>
@@ -347,7 +347,7 @@ const ReviewsManagement: React.FC = () => {
                     }}
                   >
                     <Trash2 className="h-4 w-4 ml-2 text-red-500" />
-                    حذف المراجعة
+                    Delete Review
                   </Button>
                 </div>
               </div>

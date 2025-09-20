@@ -6,7 +6,7 @@ interface Project {
   title: string;
   client: string;
   startDate: string;
-  status: 'مكتمل' | 'نشط' | 'متوقف';
+  status: 'Completed' | 'Active' | 'On Hold';
   progress: number;
 }
 
@@ -19,44 +19,44 @@ interface ProjectTableProps {
 const ProjectTable = ({ projects, onEdit, onDelete }: ProjectTableProps) => {
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'مكتمل': return 'bg-green-100 text-green-800';
-      case 'نشط': return 'bg-blue-100 text-blue-800';
-      case 'متوقف': return 'bg-gray-100 text-gray-800';
+      case 'Completed': return 'bg-green-100 text-green-800';
+      case 'Active': return 'bg-blue-100 text-blue-800';
+      case 'On Hold': return 'bg-gray-100 text-gray-800';
       default: return 'bg-gray-100 text-gray-800';
     }
   };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('ar-SA');
+    return date.toLocaleDateString('en-US');
   };
 
   return (
     <div className="overflow-x-auto bg-white rounded-lg shadow border border-gray-200">
       <table className="w-full divide-y divide-gray-200">
         <colgroup>
-          <col className="w-3/12" /> {/* العنوان */}
-          <col className="w-3/12" /> {/* العميل */}
-          <col className="w-2/12" /> {/* تاريخ البدء */}
-          <col className="w-2/12" /> {/* الحالة */}
-          <col className="w-2/12" /> {/* الإجراءات */}
+          <col className="w-3/12" /> {/* Title */}
+          <col className="w-3/12" /> {/* Client */}
+          <col className="w-2/12" /> {/* Start Date */}
+          <col className="w-2/12" /> {/* Status */}
+          <col className="w-2/12" /> {/* Actions */}
         </colgroup>
         <thead className="bg-gray-50">
           <tr>
             <th className="px-4 py-3 text-sm font-medium text-gray-700 uppercase tracking-wider">
-              العنوان
+              Title
             </th>
             <th className="px-4 py-3 text-sm font-medium text-gray-700 uppercase tracking-wider">
-              العميل
+              Client
             </th>
             <th className="px-4 py-3 text-sm font-medium text-gray-700 uppercase tracking-wider">
-              تاريخ البدء
+              Start Date
             </th>
             <th className="px-4 py-3 text-sm font-medium text-gray-700 uppercase tracking-wider">
-              الحالة
+              Status
             </th>
             <th className="px-4 py-3 text-sm font-medium text-gray-700 uppercase tracking-wider">
-              الإجراءات
+              Actions
             </th>
           </tr>
         </thead>
@@ -108,8 +108,8 @@ const ProjectTable = ({ projects, onEdit, onDelete }: ProjectTableProps) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
           </div>
-          <p className="text-lg font-medium">لا توجد مشاريع لعرضها</p>
-          <p className="text-sm mt-1">انقر على زر "إضافة مشروع جديد" لبدء إدارة مشاريعك</p>
+          <p className="text-lg font-medium">No projects to display</p>
+          <p className="text-sm mt-1">Click on the "Add New Project" button to start managing your projects</p>
         </div>
       )}
     </div>

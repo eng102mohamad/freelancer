@@ -13,15 +13,15 @@ const COLORS = ['#3b82f6', '#ef4444', '#f97316']
 
 export function UserDistributionChart({ data }: UserDistributionChartProps) {
   const chartData = [
-    { name: 'العملاء', value: data.customers, color: COLORS[0] },
-    { name: 'المديرون', value: data.managers, color: COLORS[1] },
-    { name: 'المديرين', value: data.admins, color: COLORS[2] }
+    { name: 'Customers', value: data.customers, color: COLORS[0] },
+    { name: 'Managers', value: data.managers, color: COLORS[1] },
+    { name: 'Administrators', value: data.admins, color: COLORS[2] }
   ]
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-right">توزيع المستخدمين</CardTitle>
+        <CardTitle className="text-right">User Distribution</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="h-[300px]">
@@ -65,4 +65,3 @@ export function UserDistributionChart({ data }: UserDistributionChartProps) {
     </Card>
   )
 }
-

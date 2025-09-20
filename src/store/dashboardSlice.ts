@@ -20,26 +20,17 @@ interface Activity {
   timestamp: string
 }
 
-interface DashboardState {
-  totalUsers: number
-  activeProjects: number
-  totalTransactions: number
-  userDistribution: UserDistribution
-  projectStatus: ProjectStatus
-  recentActivities: Activity[]
-}
-
-// إضافة واجهة للمشروع
+// Add interface for Project
 export interface Project {
   id: number;
   title: string;
   client: string;
   startDate: string;
-  status: 'مكتمل' | 'نشط' | 'متوقف';
+  status: 'Completed' | 'Active' | 'Paused';
   progress: number;
 }
 
-// تحديث الحالة لإضافة المشاريع
+// Update state to include projects
 interface DashboardState {
   totalUsers: number;
   activeProjects: number;
@@ -47,22 +38,21 @@ interface DashboardState {
   userDistribution: UserDistribution;
   projectStatus: ProjectStatus;
   recentActivities: Activity[];
-  projects: Project[]; // إضافة قائمة المشاريع
+  projects: Project[]; // Add projects list
 }
 
 interface User {
   id: number
   name: string
   email: string
-  role: 'عميل' | 'مطور' | 'مدير'
-  status: 'نشط' | 'غير نشط'
+  role: 'Customer' | 'Developer' | 'Manager'
+  status: 'Active' | 'Inactive'
   avatar: string
 }
 
 interface UsersState {
   users: User[]
 }
-
 
 const initialState: DashboardState = {
   totalUsers: 1234,
@@ -82,55 +72,39 @@ const initialState: DashboardState = {
   recentActivities: [
     {
       id: '1',
-      message: 'تم تسجيل مستخدم جديد أحمد علي',
-      timestamp: 'منذ دقيقتين'
+      message: 'New user Ahmed Ali registered',
+      timestamp: '2 minutes ago'
     },
     {
       id: '2', 
-      message: 'تم تحديث حالة المشروع "بناء التطبيق" إلى النشط',
-      timestamp: 'منذ 15 دقيقة'
+      message: 'Project "App Development" status updated to Active',
+      timestamp: '15 minutes ago'
     },
     {
       id: '3',
-      message: 'تم شكر لا يحتوي على رقم 1024',
-      timestamp: 'منذ 30 دقيقة'
+      message: 'Invoice #1024 has been paid',
+      timestamp: '30 minutes ago'
     },
     {
       id: '4',
-      message: 'تم إيداع 500$ في محفظة المستخدم 201',
-      timestamp: 'منذ ساعة واحدة'
+      message: '$500 deposited into user wallet #201',
+      timestamp: '1 hour ago'
     },
     {
       id: '5',
-      message: 'البحث المرافق على مشروع جديد "تطبيق لوحة تحكم"',
-      timestamp: 'منذ ساعتين'
+      message: 'New project "Dashboard App" assigned',
+      timestamp: '2 hours ago'
     }
   ],
-  projects: [ // إضافة بعض المشاريع الافتراضية
+  projects: [ 
     {
       id: 1,
-      title: "تطبيق الهاتف",
-      client: "شركة التقنية",
+      title: "Mobile App",
+      client: "Tech Company",
       startDate: "2023-01-15",
-      status: "نشط",
+      status: "Active",
       progress: 75
     },
-    {
-      id: 2,
-      title: "موقع الشركة",
-      client: "مؤسسة النجاح",
-      startDate: "2023-02-20",
-      status: "مكتمل",
-      progress: 100
-    },
-    {
-      id: 3,
-      title: "نظام إدارة المحتوى",
-      client: "أكاديمية التعلم",
-      startDate: "2023-03-10",
-      status: "متوقف",
-      progress: 30
-    }
   ]
 }
 
@@ -153,16 +127,16 @@ const dashboardSlice = createSlice({
         state.recentActivities.pop()
       }
     },
-    // إضافة دوال جديدة لإدارة المشاريع
+    // Add new functions for project management
     addProject: (state, action: PayloadAction<Project>) => {
       state.projects.push(action.payload);
       state.activeProjects += 1;
       
-      // إضافة نشاط جديد
+      // Add new activity
       state.recentActivities.unshift({
         id: Date.now().toString(),
-        message: `تم إضافة مشروع جديد: ${action.payload.title}`,
-        timestamp: 'الآن'
+        message: `New project added: ${action.payload.title}`,
+        timestamp: 'Just now'
       });
       
       if (state.recentActivities.length > 10) {
@@ -174,11 +148,11 @@ const dashboardSlice = createSlice({
       if (index !== -1) {
         state.projects[index] = action.payload;
         
-        // إضافة نشاط جديد
+        // Add new activity
         state.recentActivities.unshift({
           id: Date.now().toString(),
-          message: `تم تحديث مشروع: ${action.payload.title}`,
-          timestamp: 'الآن'
+          message: `Project updated: ${action.payload.title}`,
+          timestamp: 'Just now'
         });
         
         if (state.recentActivities.length > 10) {
@@ -192,15 +166,15 @@ const dashboardSlice = createSlice({
         const project = state.projects[projectIndex];
         state.projects.splice(projectIndex, 1);
         
-        if (project.status === 'نشط') {
+        if (project.status === 'Active') {
           state.activeProjects -= 1;
         }
         
-        // إضافة نشاط جديد
+        // Add new activity
         state.recentActivities.unshift({
           id: Date.now().toString(),
-          message: `تم حذف مشروع: ${project.title}`,
-          timestamp: 'الآن'
+          message: `Project deleted: ${project.title}`,
+          timestamp: 'Just now'
         });
         
         if (state.recentActivities.length > 10) {
@@ -222,4 +196,3 @@ export const {
 } = dashboardSlice.actions;
 
 export default dashboardSlice.reducer
-

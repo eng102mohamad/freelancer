@@ -14,17 +14,17 @@ export function DashboardHeader() {
           className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
         >
           <Home className="h-4 w-4" />
-          <span>العودة للرئيسية</span>
+          <span>Back to Home</span>
         </Link>
       </div>
       
       <div className="flex items-center gap-4">
         <div className="flex flex-col text-right">
-          <span className="text-sm font-medium">أحمد محمد</span>
-          <span className="text-xs text-gray-500">مدير النظام</span>
+          <span className="text-sm font-medium">Ahmed Mohamed</span>
+          <span className="text-xs text-gray-500">System Administrator</span>
         </div>
         <div className="h-10 w-10 rounded-full bg-red-100 flex items-center justify-center">
-          <span className="text-red-700 font-medium">أ</span>
+          <span className="text-red-700 font-medium">A</span>
         </div>
       </div>
     </header>

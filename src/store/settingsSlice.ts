@@ -35,7 +35,7 @@ interface SettingsSliceState {
 
 const initialState: SettingsSliceState = {
   general: {
-    siteName: "لوحة تحكم المسؤول",
+    siteName: "Admin Dashboard",
     siteUrl: "https://www.yourdomain.com",
     email: "contact@yourdomain.com",
     address: "",

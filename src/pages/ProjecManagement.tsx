@@ -36,7 +36,7 @@ export default function ProjectManagement() {
   };
 
   const handleDeleteProject = (id: number) => {
-    if (window.confirm('هل أنت متأكد من أنك تريد حذف هذا المشروع؟')) {
+    if (window.confirm('Are you sure you want to delete this project?')) {
       dispatch(deleteProject(id));
     }
   };
@@ -49,34 +49,34 @@ export default function ProjectManagement() {
   return (
     <div className="flex-1 p-6 bg-gray-50">
       <div className="space-y-6">
-        {/* العنوان الرئيسي */}
+        {/* Main Title */}
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold text-right">إدارة المشاريع</h1>
+          <h1 className="text-3xl font-bold text-right">Project Management</h1>
           <Button onClick={() => setIsModalOpen(true)}>
             <Plus className="h-4 w-4 ml-2" />
-            إضافة مشروع جديد
+            Add New Project
           </Button>
         </div>
 
-        {/* شريط البحث */}
+        {/* Search Bar */}
         <div className="relative">
           <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
           <Input
-            placeholder="ابحث عن مشروع أو عميل..."
+            placeholder="Search for project or client..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pr-10 text-right"
           />
         </div>
 
-        {/* جدول المشاريع */}
+        {/* Projects Table */}
         <ProjectTable
           projects={filteredProjects}
           onEdit={handleEditProject}
           onDelete={handleDeleteProject}
         />
 
-        {/* نافذة إضافة/تعديل المشروع */}
+        {/* Add/Edit Project Modal */}
         <AddProjectModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
